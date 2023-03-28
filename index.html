@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script src="https://kit.fontawesome.com/06fe061d41.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <title>Sensi.Ai Taggers</title>
+    <link rel="icon" type="image/x-icon" href="https://sensi.ai/wp-content/uploads/2021/05/cropped-cropped-Sensi_favicon2-180x180.png">
+
+  </head>
+  <style>
+  body{
+
+    margin-left: 40%;
+    margin-top: 5%;
+    font-size: 2em;
+    background-image: url("https://sensi.ai/wp-content/uploads/2021/04/sensi-hero.jpg");
+
+    background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position: center;
+   background-size: 100% 100%;
+   font-family: cursive;
+  }
+
+  #mins
+  {
+    font-size: 1em;
+  }
+  select
+  {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1em;
+  }
+  #startWorking{
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  margin-bottom: 20%;
+}
+
+#startWorking:hover {background-color: #3e8e41}
+
+#startWorking:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+#sensi {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  padding: 5px;
+  width:10%;
+}
+
+#sensi:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+#links{
+  position: fixed;
+  bottom: 0;
+  padding-top:5%;
+  margin-top: 10%;
+}
+a:link {
+       color: #ccc;
+     }
+     /* visited link */
+     a:visited {
+       color: #095484;
+     }
+     /* mouse over link */
+     a:hover {
+       color: #8ebf42;
+     }
+     /* selected link */
+     a:active {
+       color: #800000;
+     }
+
+
+
+
+
+  </style>
+    <script>
+
+    var  tagger; var mins;
+    window.onload = function () {
+      if(document.getElementById("mins")==null)
+      {
+        mins=1;
+      }
+      else
+      {
+         mins = document.getElementById("mins").value;
+      }
+      if(document.getElementById("taggers")==null)
+      tagger=1;
+      else{
+     tagger = document.getElementById("taggers").value;
+     }
+     console.log(tagger);
+   }
+
+    function Start() {
+      var today = new Date();
+      var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      //timezones array
+      //****************2 taggers Shift!!!*************************************
+      var downenv=[1190,2176,401,930,615,2164,162,2050,6839,7513,7313,6830,2053,798,1806,1564,435,522,2131,295,1883,1958,322,2529,2313,2397,735];
+
+        tagger = document.getElementById("taggers").value;
+          mins = document.getElementById("mins").value/60;
+          howManyTaggers=2;
+            console.log(mins);
+            var a=0;
+            var b=0;
+            var c=0;
+<!-- //**https://timeline.in.sensi.ai/realtime/307/2022-04-14%2011:05:13/0.33333333**/// -->
+      //cheking which timezones to load.
+        var locs = []
+      if(tagger==1)
+      {
+        var URL='https://timeline.in.sensi.ai/realtime/'
+        if(mins==0)
+        {
+          mins=1;
+        }
+
+        console.log("hey");
+        for (j=0;j<downenv.length;j++)
+        {
+          console.log("heyy")
+          URL+=downenv[j];
+          URL+='/'+date+'%20'+time+'/'+mins;
+
+          locs.push(URL)
+          var URL='https://timeline.in.sensi.ai/realtime/'
+        }
+        console.log(locs)
+
+      }
+
+
+else
+{
+
+  document.getElementById("startWorking").innerText= "Good luck!";
+  document.getElementById("startWorking").style.background = "blue";
+}
+
+
+
+
+
+
+
+
+//https://timeline.in.sensi.ai/realtime/295,307,322298/2022-04-14%2011:05:13/1
+
+
+
+    for (let i = 0; i<locs.length ; i++) {
+  window.open(locs[i])}
+}
+
+ // https://timeline.in.sensi.ai/realtime/298,307/2022-04-14%2012:43:59/0.16666666666666666
+
+
+    </script>
+  <body>
+
+
+
+
+<div id="howManyTaggersAlert">
+    <form action="/action_page.php">
+      <label for="whichTagger">Which tagger are you?</label>
+      <select id="taggers">
+        <option value="1">tagger 1</option>
+      </select>
+      <i class="fa-solid fa-tag"></i>
+      <br><br><br>
+
+      <label for="Howmany">How many taggers are in this shift?</label>
+      <select id="howManyTaggers">
+
+        <option value="2">2</option>
+
+
+      </select>
+      <i class="fa-solid fa-tags"></i>
+
+      </div>
+      <br>
+      <br><br>
+      <label for="fname">Rewind how many minutes?</label>
+      <input type="text" id="mins"  placeholder="1-60 mins"> <i class="fa-solid fa-clock"></i> <i class="fa-solid fa-backward"></i>
+      <br><br>
+      <br><br>
+
+    </form>
+  <button id="startWorking" onclick="Start()">Start Working</button>
+  <br></br>
+  <a href="https://sensi.ai/">
+  <img id="sensi" src="https://sensi.ai/wp-content/uploads/2021/04/sensi-logo_dark.svg"alt="sensi.ai"></img>
+</a>
+<br><br>
+  <div id="links" style="inline-block; margin-top: 10%;">
+  <a href="https://docs.google.com/spreadsheets/d/1cfuKhX92rFEVcxmpL2Bov4fyQ2o20VkwctAzjWNLX3c/edit#gid=1218201193" >Tagging Status</a>
+  <a href="https://app.meckano.co.il/login.php#login" >Meckano <i class="fa-solid fa-hourglass fa-2xs"></i></a>
+  <a href="https://app.getsling.com/?_ga=2.127617093.97232317.1648557358-1789748687.1648028497" >Sling</a>
+  </div>
+
+  </body>
+</html>
